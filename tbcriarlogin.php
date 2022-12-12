@@ -18,13 +18,28 @@
         //print_r('<br>');
         //print_r('Endereço: ' . $_POST['endereco']);
 
+    if($_POST) {
+        $senhaLogin = $_POST['senhaLogin'];
+        $confirmasenhaLogin  = $_POST['confirmasenhaLogin'];
+        if ($senhaLogin == "") {
+            $mensagem = "<span class='aviso'><b>Aviso</b>: Senha não foi alterada!</span>";
+        } else if ($senhaLogin == $confirmasenhaLogin) {
+            $mensagem = "<span class='sucesso'><b>Sucesso</b>: As senhas são iguais!</span>";
+        } else {
+            $mensagem = "<span class='erro'><b>Erro</b>: As senhas não conferem!</span>";
+        }
+        echo "<p id='mensagem'>".$mensagem."</p>";
+    }
+
     include_once('config.php');
         
+        $nomeLogin = $_POST['nomeLogin'];
         $emailLogin = $_POST['emailLogin'];
         $senhaLogin = $_POST['senhaLogin'];
+        $confirmasenhaLogin = $_POST['confirmasenhaLogin'];
 
-        $result = mysqli_query($conexao, "INSERT INTO tblogin(emailLogin,senhaLogin) 
-        VALUES ('$emailLogin','$senhaLogin')");
+        $result = mysqli_query($conexao, "INSERT INTO tbcriarlogin(nomeLogin,emailLogin,senhaLogin,confirmasenhaLogin) 
+        VALUES ('$nomeLogin','$emailLogin','$senhaLogin','$confirmasenhaLogin')");
     }
 ?>
 
@@ -117,10 +132,16 @@
 <body>
     <!--<a href="home.php">Voltar</a>-->
     <div class="box">
-        <form action="tblogin.php" method="POST">
+        <form action="tbcriarlogin.php" method="POST">
             <fieldset>
-                <legend><b>Login</b></legend>
+                <legend><b>Cadastre-se</b></legend>
                 <br>
+                <div class="inputBox">
+                    <input type="text" name="nomeLogin" id="nomeLogin" class="inputUser" required>
+                    <label for="nomeLogin" class="labelInput">Nome</label>
+                </div>
+
+                <br><br>
 
                 <div class="inputBox">
                     <input type="text" name="emailLogin" id="emailLogin" class="inputUser" required>
@@ -132,6 +153,13 @@
                 <div class="inputBox">
                     <input type="password" name="senhaLogin" id="senhaLogin" class="inputUser" required>
                     <label for="senhaLogin" class="labelInput">Senha</label>
+                </div>
+
+                <br><br>
+
+                <div class="inputBox">
+                    <input type="password" name="confirmasenhaLogin" id="confirmasenhaLogin" class="inputUser" required>
+                    <label for="confirmasenhaLogin" class="labelInput">Confirmar Senha</label>
                 </div>
 
                 <br><br>

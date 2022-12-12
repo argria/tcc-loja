@@ -139,7 +139,7 @@ if (isset($_POST['submit'])) {
                 <div class="inputBox">
                     <label for="nomeCategoria" class="labelInput">Categoria</label>
 
-                    <select class="form-control" name="ddlEstCivil" id="ddlEstCivil">
+                    <select class="form-control" name="nomeCategoria" id="idCategoria">
                         <?php
 
                         $sql = "SELECT idCategoria, nomeCategoria
@@ -151,7 +151,8 @@ if (isset($_POST['submit'])) {
 
                         while ($rowCategoria = $arrayCategoria->fetch_assoc()) {
                         ?>
-                            <option value="<?php echo $rowCategoria["idCategoria"]; ?>"><?php echo $rowCategoria["nomeCategoria"]; ?></option>
+                            <option value="<?php echo $rowCategoria["nomeCategoria"]; ?>">
+                            <?php echo $rowCategoria["nomeCategoria"]; ?></option>
                         <?php
                         }
                         ?>
