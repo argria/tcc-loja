@@ -1,10 +1,3 @@
 <?php
-
-$dbHost = 'Localhost';
-$dbUsername = 'root';
-$dbPassword = '';
-$dbName = 'bdliza';
-
-$conexao = new mysqli($dbHost,$dbUsername,$dbPassword,$dbName);
-
+$conexao = pg_connect("host=tribus.postgres.database.azure.com port=5432 dbname=tribus user=tribus password=tccifmg1! sslmode=require");
 ?>

@@ -1,30 +1,36 @@
 <?php
-
+ if(!isset($_SESSION)){
+    session_start();
+}
     if(isset($_POST['submit']))
     {
-        //print_r('Nome: ' . $_POST['nome']);
-        //print_r('<br>');
-        //print_r('Email: ' . $_POST['email']);
-        //print_r('<br>');
-        //print_r('Telefone: ' . $_POST['telefone']);
-        //print_r('<br>');
-        //print_r('Sexo: ' . $_POST['genero']);
-        //print_r('<br>');
-        //print_r('Data de Nascimento: ' . $_POST['data_nascimento']);
-        //print_r('<br>');
-        //print_r('Cidade: ' . $_POST['cidade']);
-        //print_r('<br>');
-        //print_r('Estado: ' . $_POST['estado']);
-        //print_r('<br>');
-        //print_r('Endereço: ' . $_POST['endereco']);
+    require_once('config.php');
+        $usuario = $_POST["emailLogin"];
+        $senha = $_POST["senhaLogin"];
 
-    include_once('config.php');
+        $sql = "SELECT * 
+                FROM tbcriarlogin
+                where emailLogin = '$usuario' and
+                senhaLogin = '$senha' ";
+
+        //echo $sql;
+
+        $resultado = pg_query($conexao, $sql);
+
+        if (pg_num_rows($resultado)){
+            $dados_usuario = pg_fetch_assoc($resultado);
+            $_SESSION["nomeLogin"] = $usuario;
+            $_SESSION["nome"]=$dados_usuario['nomelogin'];
+            $_SESSION["emailLogin"] = $usuario; 
+            header("Location: paginainicial2Cli.php");
+        }else{
+            ?>
+            <script>alert("Email ou senha errados, tente novamente!")</script>
+            <script>window.history.back();</script>    
+            <?php    
+        }
         
-        $emailLogin = $_POST['emailLogin'];
-        $senhaLogin = $_POST['senhaLogin'];
-
-        $result = mysqli_query($conexao, "INSERT INTO tblogin(emailLogin,senhaLogin) 
-        VALUES ('$emailLogin','$senhaLogin')");
+         
     }
 ?>
 
@@ -103,7 +109,7 @@
 
     #submit2 {
         background-image: linear-gradient(45deg, orange, red);
-        width: 50%;
+        width: 100%;
         border: none;
         padding: 15px;
         color: white;
@@ -123,27 +129,22 @@
                 <br>
 
                 <div class="inputBox">
-                    <input type="text" name="emailLogin" id="emailLogin" class="inputUser" required>
+                    <input type="text" name="emailLogin" id="emailLogin" class="inputUser" placeholder="Informe o email" required>
                     <label for="emailLogin" class="labelInput">E-mail</label>
                 </div>
 
                 <br><br>
 
                 <div class="inputBox">
-                    <input type="password" name="senhaLogin" id="senhaLogin" class="inputUser" required>
+                    <input type="password" name="senhaLogin" id="senhaLogin" class="inputUser" placeholder="Informe a senha" required>
                     <label for="senhaLogin" class="labelInput">Senha</label>
                 </div>
 
                 <br><br>
 
                 <input type="submit" name="submit" id="submit">
-                <br>
-                
-                <div style="text-align: center">
-                    <button>Cliente</button>
-                    <button>ADM</button>
-                </div>
-                
+                <br><br>
+                <input type="reset" name="reset" value="Cancelar" id="submit2">
 
             </fieldset>
         </form>

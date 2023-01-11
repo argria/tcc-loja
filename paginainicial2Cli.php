@@ -1,3 +1,9 @@
+<?php
+include("protect.php");
+if(!isset($_SESSION)){
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,6 +50,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Acessórios</a></li>
                             <li><a class="dropdown-item" href="#">Calçados</a></li>
+                            <li><a class="dropdown-item" href="#">Infantil</a></li>
                             <li><a class="dropdown-item" href="#">Partes de Baixo</a></li>
                             <li><a class="dropdown-item" href="#">Partes de Cima</a></li>
                             <li><a class="dropdown-item" href="#">Vestidos</a></li>
@@ -56,6 +63,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Acessórios</a></li>
                             <li><a class="dropdown-item" href="#">Calçados</a></li>
+                            <li><a class="dropdown-item" href="#">Infantil</a></li>
                             <li><a class="dropdown-item" href="#">Partes de Baixo</a></li>
                             <li><a class="dropdown-item" href="#">Partes de Cima</a></li>
                         </ul>
@@ -63,7 +71,6 @@
 
                 </ul>
                 <!-- Pesquisar -->
-              
 
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
@@ -73,7 +80,7 @@
                 <br><br>
                  <a>ㅤ<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-                </svg> Seja bem vindo! Faça seuㅤ</a><a href="tblogin.php">Login</a>ㅤouㅤ<a href="tbcriarlogin.php"> cadastre-se</a> 
+                </svg> Seja bem vindo, <?php echo $_SESSION["nome"];?>!ㅤ <a href="sair.php"> Deseja sair?</a> 
 
 
             </div>
@@ -89,13 +96,13 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="imagens/promoção.png" width="100" height="400" class="d-block w-100" class="d-block w-100" alt="...">
+            <img src="imagens/carrossel 3.png" width="500" height="800" class="d-block w-100" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="imagens/promoção.png" width="100" height="400" class="d-block w-100" class="d-block w-100" alt="...">
+            <img src="imagens/carrossel 3.png" width="500" height="800" class="d-block w-100" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="imagens/promoção.png" width="100" height="400" class="d-block w-100" class="d-block w-100" alt="...">
+            <img src="imagens/carrossel 3.png" width="500" height="800" class="d-block w-100" class="d-block w-100" alt="...">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -368,6 +375,16 @@
 
       </section>
   
+      <!-- Section: Text -->
+      <section class="mb-4">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+          repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+          eum harum corrupti dicta, aliquam sequi voluptate quas.
+        </p>
+      </section>
+      <!-- Section: Text -->
+  
       <!-- Section: Links -->
       <section class="">
         <!--Grid row-->
@@ -381,13 +398,13 @@
                 <a href="quemsomos.html" class="text-white">Quem Somos</a>
               </li>
               <li>
-                <a href="minhaconta.html" class="text-white">Minha Conta</a>
+                <a href="#!" class="text-white">Minha Conta</a>
               </li>
               <li>
-                <a href="tbcriarlogin.php" class="text-white">Cadastre-se</a>
+                <a href="#!" class="text-white">Cadastre-se</a>
+              </li>
               <li>
-              <li>
-                <a href="politicadeprivacidade.html" class="text-white">Política de Privacidade</a>
+                <a href="#!" class="text-white">Política de Privacidade</a>
               </li>
             </ul>
           </div>

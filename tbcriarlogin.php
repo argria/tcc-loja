@@ -38,7 +38,7 @@
         $senhaLogin = $_POST['senhaLogin'];
         $confirmasenhaLogin = $_POST['confirmasenhaLogin'];
 
-        $result = mysqli_query($conexao, "INSERT INTO tbcriarlogin(nomeLogin,emailLogin,senhaLogin,confirmasenhaLogin) 
+        $result = pg_query($conexao, "INSERT INTO tbcriarlogin(nomeLogin,emailLogin,senhaLogin,confirmasenhaLogin) 
         VALUES ('$nomeLogin','$emailLogin','$senhaLogin','$confirmasenhaLogin')");
     }
 ?>
@@ -166,11 +166,6 @@
 
                 <input type="submit" name="submit" id="submit">
                 <br>
-                
-                <div style="text-align: center">
-                    <button>Cliente</button>
-                    <button>ADM</button>
-                </div>
                 
 
             </fieldset>
